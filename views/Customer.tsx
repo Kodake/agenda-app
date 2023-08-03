@@ -1,6 +1,7 @@
 import { Headline } from 'react-native-paper';
+import { Props } from '../interfaces/appInterfaces';
 
-const Home = () => {
+const Customer: React.FC<Props> = ({ navigation }) => {
     return (
         <>
             <Headline style={{
@@ -8,9 +9,9 @@ const Home = () => {
                 marginTop: 20,
                 marginBottom: 10,
                 fontSize: 30
-            }}>{'Citas Agendadas'}</Headline>
+            }}>{'Datos del Paciente'}</Headline>
         </>
     );
 }
 
-export default Home;
+export default Customer;
