@@ -1,4 +1,5 @@
 import { Headline } from 'react-native-paper';
+import AgendaList from '../components/AgendaList';
 
 const Home = () => {
     return (
@@ -9,6 +10,8 @@ const Home = () => {
                 marginBottom: 10,
                 fontSize: 30
             }}>{'Citas Agendadas'}</Headline>
+
+            <AgendaList />
         </>
     );
 }
