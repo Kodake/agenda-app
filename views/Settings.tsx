@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { Calendar, DateData } from "react-native-calendars";
 import { Headline } from "react-native-paper";
 import { Props } from "../interfaces/appInterfaces";
 import CalendarPicker from "../components/CalendarPicker";
-import AgendaList from "../components/AgendaList";
 
 const Settings: React.FC<Props> = ({ navigation }) => {
     return (
