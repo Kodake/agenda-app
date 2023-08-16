@@ -1,28 +1,45 @@
-import React, { useState } from 'react'
-import { Calendar, DateData } from 'react-native-calendars'
+import React from 'react'
+import { Calendar } from 'react-native-calendars'
 import { Props } from '../interfaces/appInterfaces';
+import store from '../store/sharedStateStore';
+import { SafeAreaView, TextInput } from 'react-native';
+import { AGENDA_STRINGS } from '../messages/appMessages';
+import { styles } from '../styles/appStyles';
+import { Button } from 'react-native-paper';
 
 const CalendarPicker: React.FC<Props> = ({ navigation }) => {
-    const [selected, setSelected] = useState('');
-
-    const handleSelectedDate = (date: DateData) => {
-        setSelected(date.dateString);
-
-        navigation.navigate('Customer');
+    const handleSaveCita = () => {
+        store.saveCita();
+        navigation.navigate('Home');
     }
 
     return (
-        <Calendar
-            style={{
-                marginHorizontal: 10
-            }}
-            onDayPress={date => {
-                handleSelectedDate(date)
-            }}
-            markedDates={{
-                [selected]: { selected: true, disableTouchEvent: true, selectedColor: '#254bbe' }
-            }}
-        />
+        <>
+            <SafeAreaView style={styles.view}>
+                <Calendar
+                    onDayPress={date => {
+                        store.setFecha(date.dateString)
+                    }}
+                    markedDates={{  
+                        [store.fecha]: { selected: true, disableTouchEvent: false }
+                    }}
+                />
+
+                <TextInput
+                    placeholder={AGENDA_STRINGS.appointmentName}
+                    onChangeText={(texto) => store.setCita(texto)}
+                    style={styles.input}
+                />
+                <Button
+                    buttonColor='#254bbe'
+                    style={styles.button}
+                    mode="contained"
+                    onPress={handleSaveCita}
+                >
+                    {AGENDA_STRINGS.addAppointment}
+                </Button>
+            </SafeAreaView>
+        </>
     )
 }
 
